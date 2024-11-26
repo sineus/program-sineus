@@ -1,0 +1,363 @@
+{
+  "address": "2to1m9qHAKQ8WdcKdKAhZJm6UkFACPgLqso3FPsuHe3M",
+  "metadata": {
+    "name": "solana_movie",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create",
+      "discriminator": [24, 30, 200, 40, 5, 28, 7, 119],
+      "accounts": [
+        {
+          "name": "creator",
+          "docs": ["CHECK"],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "movie",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "cover",
+          "type": "string"
+        },
+        {
+          "name": "year",
+          "type": "u64"
+        },
+        {
+          "name": "director",
+          "type": "string"
+        },
+        {
+          "name": "actors",
+          "type": {
+            "vec": "string"
+          }
+        },
+        {
+          "name": "duration",
+          "type": "u16"
+        },
+        {
+          "name": "budget",
+          "type": "u64"
+        },
+        {
+          "name": "random_number",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "remove",
+      "discriminator": [199, 186, 9, 79, 96, 129, 24, 106],
+      "accounts": [
+        {
+          "name": "authority",
+          "docs": ["CHECK"],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "movie_pda",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "transfer",
+      "discriminator": [163, 52, 200, 231, 140, 3, 69, 186],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "new_authority"
+        },
+        {
+          "name": "movie_pda",
+          "writable": true
+        },
+        {
+          "name": "new_movie_pda",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update",
+      "discriminator": [219, 200, 88, 176, 158, 63, 253, 127],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "movie_pda",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "cover",
+          "type": "string"
+        },
+        {
+          "name": "year",
+          "type": "u64"
+        },
+        {
+          "name": "director",
+          "type": "string"
+        },
+        {
+          "name": "actors",
+          "type": {
+            "vec": "string"
+          }
+        },
+        {
+          "name": "duration",
+          "type": "u16"
+        },
+        {
+          "name": "budget",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Movie",
+      "discriminator": [222, 96, 145, 199, 237, 196, 205, 180]
+    }
+  ],
+  "events": [
+    {
+      "name": "MovieCreated",
+      "discriminator": [99, 29, 223, 19, 194, 42, 182, 5]
+    },
+    {
+      "name": "MovieRemoved",
+      "discriminator": [49, 165, 125, 0, 254, 251, 245, 129]
+    },
+    {
+      "name": "MovieTransfered",
+      "discriminator": [42, 222, 70, 138, 239, 207, 18, 99]
+    },
+    {
+      "name": "MovieUpdated",
+      "discriminator": [30, 128, 121, 198, 78, 223, 46, 239]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "StringTooLong",
+      "msg": "String is too long"
+    },
+    {
+      "code": 6001,
+      "name": "TitleTooLong",
+      "msg": "Title is too long"
+    },
+    {
+      "code": 6002,
+      "name": "DescriptionTooLong",
+      "msg": "Description is too long"
+    },
+    {
+      "code": 6003,
+      "name": "CoverTooLong",
+      "msg": "Cover is too long"
+    },
+    {
+      "code": 6004,
+      "name": "DirectorTooLong",
+      "msg": "Director is too long"
+    },
+    {
+      "code": 6005,
+      "name": "TooManyActors",
+      "msg": "Too many actors"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidPDA",
+      "msg": "Invalid PDA for the movie"
+    },
+    {
+      "code": 6007,
+      "name": "UnauthorizedAccess",
+      "msg": "Unauthorized access, you're not the creator of this movie"
+    }
+  ],
+  "types": [
+    {
+      "name": "Movie",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "cover",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "type": "u64"
+          },
+          {
+            "name": "director",
+            "type": "string"
+          },
+          {
+            "name": "duration",
+            "type": "u16"
+          },
+          {
+            "name": "actors",
+            "type": {
+              "vec": "string"
+            }
+          },
+          {
+            "name": "budget",
+            "type": "u64"
+          },
+          {
+            "name": "random_number",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MovieCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "random_number",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MovieRemoved",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "random_number",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MovieTransfered",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "new_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "random_number",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MovieUpdated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "random_number",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "MOVIE_SEED",
+      "type": "string",
+      "value": "\"movie\""
+    }
+  ]
+}
