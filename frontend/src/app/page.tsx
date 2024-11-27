@@ -3,6 +3,7 @@
 import Brand from "@/components/Brand";
 import CreateMovie from "@/components/CreateMovie";
 import MovieItem from "@/components/MovieItem";
+import SigninModal from "@/components/SigninModal";
 import SkeletonMovieGrid from "@/components/SkeletonMovieGrid";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -76,13 +77,11 @@ export default function Home() {
               </HStack>
             </>
           ) : (
-            <Button
-              variant="subtle"
-              rounded="full"
-              onClick={() => wallet.connect()}
-            >
-              Connect
-            </Button>
+            <SigninModal>
+              <Button variant="subtle" rounded="full">
+                Sign in
+              </Button>
+            </SigninModal>
           )}
         </HStack>
       </Stack>

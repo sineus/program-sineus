@@ -169,11 +169,11 @@ export default function CreateMovie(props: CreateMovieProps) {
           Create
         </Button>
       </DialogTrigger>
-      <DialogContent asChild>
+      <DialogContent asChild borderRadius="4xl" p="2" gap="5">
         <form onSubmit={form.handleSubmit(submit)}>
           <DialogHeader>
             <Heading>Create movie</Heading>
-            <DialogCloseTrigger />
+            <DialogCloseTrigger rounded="full" top="4" right="4" />
           </DialogHeader>
           <DialogBody>
             <Stack gap="5">
@@ -230,8 +230,14 @@ export default function CreateMovie(props: CreateMovieProps) {
               </Field>
             </Stack>
           </DialogBody>
-          <DialogFooter>
-            <Button type="submit" loading={create.isLoading}>
+          <DialogFooter pb="8">
+            <Button
+              rounded="full"
+              type="submit"
+              variant="subtle"
+              flex="1"
+              loading={create.isLoading}
+            >
               Create
             </Button>
           </DialogFooter>
