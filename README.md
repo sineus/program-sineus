@@ -6,7 +6,7 @@ A decentralized streaming platform built on Solana blockchain
 [![Next.js](https://img.shields.io/badge/Next.js-15.0.3-black)](https://nextjs.org/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-[Demo](https://solana-movie-ca9567w87-sineus-projects.vercel.app/) • [Documentation](#documentation) • [Installation](#installation)
+[Demo](https://solana-movie-jl2hh10v3-sineus-projects.vercel.app/) • [Documentation](#documentation) • [Installation](#installation)
 
 </div>
 
